@@ -1,0 +1,23 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile and run C++",
+            "type": "shell",
+            "command": "g++ -g ${file} -o ${fileBasenameNoExtension} && ./${fileBasenameNoExtension}",
+            "windows": {
+                "command": "g++ -g ${file} -o ${fileBasenameNoExtension}; if ($?) { ./${fileBasenameNoExtension} }"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
