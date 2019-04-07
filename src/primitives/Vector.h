@@ -12,7 +12,7 @@ class Vector
     Vector() {}
     Vector(double u, double v, double w) : head(Point3D(u, v, w)) {}
     Vector(const Point3D &h) : head(Point3D(h)) {}
-    Vector(const Point3D &start, const Point3D &end) : head(Point3D()) {}   //! TODO fix here
+    Vector(const Point3D &start, const Point3D &end) : head(Point3D()) {} //! TODO fix here
     Vector(const Vector &v) : head(v.getHead()) {}
 
     Point3D getHead() const;
@@ -34,6 +34,7 @@ class Vector
 
 Point3D Vector::getHead() const
 {
+    // return this->head;
     return Point3D(this->head);
 }
 

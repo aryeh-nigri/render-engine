@@ -12,7 +12,7 @@ class Point3D : public Point2D
   public:
     Point3D() {}
     Point3D(double u, double v, double w) : Point2D(u, v), z(Coordinate(w)) {}
-    Point3D(Coordinate a, Coordinate b, Coordinate c) : Point2D(a, b), z(Coordinate(c)) {}
+    Point3D(const Coordinate &a, const Coordinate &b, const Coordinate &c) : Point2D(a, b), z(Coordinate(c)) {}
     Point3D(const Point3D &p) : Point2D(p), z(p.getZ()) {}
 
     Coordinate getZ() const;
@@ -20,9 +20,9 @@ class Point3D : public Point2D
 
     Point3D operator+(const Point3D &) const;
     Point3D operator-(const Point3D &) const;
-    Point3D operator*(double) const;
+    Point3D operator*(double)const;
     Point3D operator/(double) const;
-    double operator*(const Point3D &) const;
+    double operator*(const Point3D &)const;
     bool operator==(const Point3D &) const;
     bool operator>(const Point3D &) const;
     bool operator<(const Point3D &) const;
@@ -32,12 +32,11 @@ class Point3D : public Point2D
 
 Coordinate Point3D::getZ() const
 {
-    // return this->z;
     return Coordinate(this->z);
 }
 void Point3D::setZ(const Coordinate &c)
 {
-    this->z = c;
+    this->z = Coordinate(c);
 }
 
 Point3D Point3D::operator+(const Point3D &p) const

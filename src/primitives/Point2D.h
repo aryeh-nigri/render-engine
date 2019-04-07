@@ -27,21 +27,19 @@ class Point2D
 
 Coordinate Point2D::getX() const
 {
-    // return this->x;
     return Coordinate(this->x);
 }
-void Point2D::setX(const Coordinate &a)
+void Point2D::setX(const Coordinate &c)
 {
-    this->x = a;
+    this->x = Coordinate(c);
 }
 Coordinate Point2D::getY() const
 {
-    // return this->y;
     return Coordinate(this->y);
 }
-void Point2D::setY(const Coordinate &b)
+void Point2D::setY(const Coordinate &c)
 {
-    this->y = b;
+    this->y = Coordinate(c);
 }
 
 bool Point2D::operator==(const Point2D &p) const
