@@ -14,8 +14,11 @@ void testFindIntersections()
 {
     std::cout << "findIntersections" << std::endl;
 
-    Plane p1 = Plane(Vector(0, 0, -1), Point3D(0, 0, -3));
+    Plane p1 = Plane(Vector(0, 0, -1.0), Point3D(0, 0, -3.0));
     Plane p2 = Plane(Vector(0, 0.25, -1.0), Point3D(0, 0, -3));
+
+    std::cout << "p1 = " << p1 << std::endl;
+    std::cout << "p2 = " << p2 << std::endl;
 
     int count1 = 0;
     int count2 = 0;

@@ -5,15 +5,15 @@
 
 class Point2D
 {
-  protected:
-    Coordinate x;
-    Coordinate y;
+  private:
+    Coordinate _x;
+    Coordinate _y;
 
   public:
     Point2D() {}
-    Point2D(double u, double v) : x(Coordinate(u)), y(Coordinate(v)) {}
-    Point2D(Coordinate a, Coordinate b) : x(Coordinate(a)), y(Coordinate(b)) {}
-    Point2D(const Point2D &p) : x(p.getX()), y(p.getY()) {}
+    Point2D(double u, double v) : _x(Coordinate(u)), _y(Coordinate(v)) {}
+    Point2D(Coordinate a, Coordinate b) : _x(Coordinate(a)), _y(Coordinate(b)) {}
+    Point2D(const Point2D &p) : _x(p.getX()), _y(p.getY()) {}
 
     Coordinate getX() const;
     void setX(const Coordinate &);
@@ -27,38 +27,38 @@ class Point2D
 
 Coordinate Point2D::getX() const
 {
-    return Coordinate(this->x);
+    return Coordinate(this->_x);
 }
 void Point2D::setX(const Coordinate &c)
 {
-    this->x = Coordinate(c);
+    this->_x = Coordinate(c);
 }
 Coordinate Point2D::getY() const
 {
-    return Coordinate(this->y);
+    return Coordinate(this->_y);
 }
 void Point2D::setY(const Coordinate &c)
 {
-    this->y = Coordinate(c);
+    this->_y = Coordinate(c);
 }
 
 bool Point2D::operator==(const Point2D &p) const
 {
-    return (this->x == p.getX() && this->y == p.getY());
+    return (this->_x == p.getX() && this->_y == p.getY());
 }
 
 bool Point2D::operator>(const Point2D &p) const
 {
-    return (this->x > p.getX() && this->y > p.getY());
+    return (this->_x > p.getX() && this->_y > p.getY());
 }
 bool Point2D::operator<(const Point2D &p) const
 {
-    return (this->x < p.getX() && this->y < p.getY());
+    return (this->_x < p.getX() && this->_y < p.getY());
 }
 
 std::ostream &operator<<(std::ostream &os, const Point2D &p)
 {
-    return os << "Point2D{x = " << p.getX() << ", y = " << p.getY() << "}";
+    return os << "Point2D{ X = " << p.getX() << ", Y = " << p.getY() << "}";
 }
 
 #endif // POINT2D_H

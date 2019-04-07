@@ -96,7 +96,7 @@ Ray Camera::constructRayThroughPixel(int nX, int nY, double x, double y, double 
 
 std::ostream &operator<<(std::ostream &os, const Camera &c)
 {
-    return os << "Camera{P0 = " << c.getP0() << ", vUp = " << c.getVUp() << ", vTo = " << c.getVTo() << ", vRight = " << c.getVRight() << "}";
+    return os << "Camera{ P0 = " << c.getP0() << ", vUp = " << c.getVUp() << ", vTo = " << c.getVTo() << ", vRight = " << c.getVRight() << "}";
 }
 
 #endif // CAMERA_H

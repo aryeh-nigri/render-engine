@@ -6,13 +6,13 @@
 class Sphere : public RadialGeometry
 {
   private:
-    Point3D center;
+    Point3D _center;
 
   public:
     Sphere() {}
-    Sphere(const Point3D &p, double r) : center(Point3D(p)), RadialGeometry(r) {}
-    Sphere(double r, const Point3D &p) : RadialGeometry(r), center(Point3D(p)) {}
-    Sphere(const Sphere &s) : RadialGeometry(s), center(s.getCenter()) {}
+    Sphere(const Point3D &p, double r) : _center(Point3D(p)), RadialGeometry(r) {}
+    Sphere(double r, const Point3D &p) : RadialGeometry(r), _center(Point3D(p)) {}
+    Sphere(const Sphere &s) : RadialGeometry(s), _center(s.getCenter()) {}
 
     Point3D getCenter() const;
     void setCenter(const Point3D &);
@@ -23,11 +23,11 @@ class Sphere : public RadialGeometry
 
 Point3D Sphere::getCenter() const
 {
-    return Point3D(this->center);
+    return Point3D(this->_center);
 }
 void Sphere::setCenter(const Point3D &p)
 {
-    this->center = Point3D(p);
+    this->_center = Point3D(p);
 }
 
 std::list<Point3D> Sphere::findIntersections(const Ray &ray) const
@@ -36,7 +36,7 @@ std::list<Point3D> Sphere::findIntersections(const Ray &ray) const
     //Sphere: |P - O|2 - r2 = 0
 
     //L = O - P0
-    Vector L = Vector(ray.getPOO(), this->center);
+    Vector L = Vector(ray.getPOO(), this->_center);
 
     //tm = L ・V
     double tm = L.dotProduct(ray.getDirection());
@@ -84,7 +84,7 @@ Vector Sphere::getNormal(const Point3D &point) const
 {
     //V = P- O
     //N = V / ||V||
-    Vector n = Vector(this->center, point);
+    Vector n = Vector(this->_center, point);
     n.normalize();
 
     return n;
@@ -92,7 +92,7 @@ Vector Sphere::getNormal(const Point3D &point) const
 
 std::ostream &operator<<(std::ostream &os, const Sphere &s)
 {
-    return os << "Sphere{center = " << s.getCenter() << ", radius = " << s.getRadius() << "}";
+    return os << "Sphere{ center = " << s.getCenter() << ", radius = " << s.getRadius() << "}";
 }
 
 #endif // SPHERE_H

@@ -7,13 +7,13 @@ class Color
 {
   private:
     //   0xAARRGGBB (alpha, red, green, blue)
-    int value;
+    int _value;
 
   public:
-    Color(int rgb) : value(0xFF000000 | rgb) {}
+    Color(int rgb) : _value(0xFF000000 | rgb) {}
     Color(int r, int g, int b) : Color(r, g, b, 255) {}
-    Color(int r, int g, int b, int a) : value(((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0)) {}
-    Color(const Color &c) : value(c.getRGB()) {}
+    Color(int r, int g, int b, int a) : _value(((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0)) {}
+    Color(const Color &c) : _value(c.getRGB()) {}
 
     int getRed() const;
     int getGreen() const;
@@ -152,39 +152,39 @@ Color Color::BLUE = blue;
 int Color::getRed() const
 {
 
-    return (this->getRGB() >> 16) & 0xFF;
+    return (this->_value >> 16) & 0xFF;
 }
 
 // Returns the green component in the range 0-255 in the default sRGB space.
 int Color::getGreen() const
 {
 
-    return (this->getRGB() >> 8) & 0xFF;
+    return (this->_value >> 8) & 0xFF;
 }
 
 // Returns the blue component in the range 0-255 in the default sRGB space.
 int Color::getBlue() const
 {
 
-    return (this->getRGB() >> 0) & 0xFF;
+    return (this->_value >> 0) & 0xFF;
 }
 
 // Returns the alpha component in the range 0-255.
 int Color::getAlpha() const
 {
-    return (this->getRGB() >> 24) & 0xFF;
+    return (this->_value >> 24) & 0xFF;
 }
 
-// Returns the RGB value representing the color in the default sRGB
+// Returns the RGB _value representing the color in the default sRGB
 // (Bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7 are blue).
 int Color::getRGB() const
 {
-    return this->value;
+    return this->_value;
 }
 
 bool Color::operator==(const Color &c) const
 {
-    return this->getRGB() == c.getRGB();
+    return this->_value == c.getRGB();
 }
 
 Color Color::operator+(const Color &c) const
@@ -201,7 +201,7 @@ Color Color::operator-(const Color &c) const
 
 std::ostream &operator<<(std::ostream &os, const Color &c)
 {
-    return os << "Color[r = " << c.getRed() << ", g = " << c.getGreen() << ", b = " << c.getBlue() << "]";
+    return os << "Color[ R = " << c.getRed() << ", G = " << c.getGreen() << ", B = " << c.getBlue() << "]";
 }
 
 #endif // COLOR_H

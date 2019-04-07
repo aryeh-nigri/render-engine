@@ -6,16 +6,16 @@
 class Material
 {
   private:
-    double Kd; //   Diffusion attenuation coefficient
-    double Ks; //   Specular attenuation coefficient
-    double Kr; //   Reflection coefficient (1 for mirror)
-    double Kt; //   Refraction coefficient (1 for transparent)
-    double n;  //   Refraction index
+    double _Kd; //   Diffusion attenuation coefficient
+    double _Ks; //   Specular attenuation coefficient
+    double _Kr; //   Reflection coefficient (1 for mirror)
+    double _Kt; //   Refraction coefficient (1 for transparent)
+    double _n;  //   Refraction index
 
   public:
-    Material() : Kd(1.0), Ks(1.0), Kr(0.0), Kt(0.0), n(1.0) {}
-    Material(double kd, double ks, double kr, double kt, double m) : Kd(kd), Ks(ks), Kr(kr), Kt(kt), n(m) {}
-    Material(const Material &m) : Kd(m.getKd()), Ks(m.getKs()), Kr(m.getKr()), Kt(m.getKt()), n(m.getN()) {}
+    Material() : _Kd(1.0), _Ks(1.0), _Kr(0.0), _Kt(0.0), _n(1.0) {}
+    Material(double kd, double ks, double kr, double kt, double n) : _Kd(kd), _Ks(ks), _Kr(kr), _Kt(kt), _n(n) {}
+    Material(const Material &m) : _Kd(m.getKd()), _Ks(m.getKs()), _Kr(m.getKr()), _Kt(m.getKt()), _n(m.getN()) {}
 
     double getKd() const;
     void setKd(double);
@@ -31,103 +31,103 @@ class Material
 
 double Material::getKd() const
 {
-    return this->Kd;
+    return this->_Kd;
 }
 void Material::setKd(double kd)
 {
-    if (kd > 1.0)
+    if (kd >= 1.0)
     {
-        this->Kd = 1.0;
+        this->_Kd = 1.0;
     }
     else if (kd <= 0.0)
     {
-        this->Kd = 0.0;
+        this->_Kd = 0.0;
     }
     else
     {
-        this->Kd = kd;
+        this->_Kd = kd;
     }
 }
 
 double Material::getKs() const
 {
-    return this->Ks;
+    return this->_Ks;
 }
 void Material::setKs(double ks)
 {
-    if (ks > 1.0)
+    if (ks >= 1.0)
     {
-        this->Ks = 1.0;
+        this->_Ks = 1.0;
     }
     else if (ks <= 0.0)
     {
-        this->Ks = 0.0;
+        this->_Ks = 0.0;
     }
     else
     {
-        this->Ks = ks;
+        this->_Ks = ks;
     }
 }
 
 double Material::getKr() const
 {
-    return this->Kr;
+    return this->_Kr;
 }
 void Material::setKr(double kr)
 {
-    if (kr > 1.0)
+    if (kr >= 1.0)
     {
-        this->Kr = 1.0;
+        this->_Kr = 1.0;
     }
     else if (kr <= 0.0)
     {
-        this->Kr = 0.0;
+        this->_Kr = 0.0;
     }
     else
     {
-        this->Kr = kr;
+        this->_Kr = kr;
     }
 }
 
 double Material::getKt() const
 {
-    return this->Kt;
+    return this->_Kt;
 }
 void Material::setKt(double kt)
 {
-    if (kt > 1.0)
+    if (kt >= 1.0)
     {
-        this->Kt = 1.0;
+        this->_Kt = 1.0;
     }
     else if (kt <= 0.0)
     {
-        this->Kt = 0.0;
+        this->_Kt = 0.0;
     }
     else
     {
-        this->Kt = kt;
+        this->_Kt = kt;
     }
 }
 
 double Material::getN() const
 {
-    return this->n;
+    return this->_n;
 }
-void Material::setN(double m)
+void Material::setN(double n)
 {
-    if (m <= 0.0)
+    if (n <= 0.0)
     {
-        this->n = 0.0;
+        this->_n = 0.0;
     }
     else
     {
-        this->n = m;
+        this->_n = n;
     }
 }
 
 std::ostream &operator<<(std::ostream &os, const Material &m)
 {
-    return os << "Material{Kd = " << m.getKd() << ", Ks = " << m.getKs() << ", Kr = " << m.getKr() << ", Kt = " << m.getKt() << ", n = " << m.getN() << "}";
+    return os << "Material{ Kd = " << m.getKd() << ", Ks = " << m.getKs() << ", Kr = " << m.getKr() << ", Kt = " << m.getKt() << ", n = " << m.getN() << "}";
 }
 
 #endif // MATERIAL_H

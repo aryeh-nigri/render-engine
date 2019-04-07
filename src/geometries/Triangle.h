@@ -130,7 +130,7 @@ Vector Triangle::getNormal(const Point3D &point) const
 
 std::ostream &operator<<(std::ostream &os, const Triangle &t)
 {
-    return os << "Triangle{P1 = " << t.getP1() << ", P2 = " << t.getP2() << ", P3 = " << t.getP3() << "}";
+    return os << "Triangle{ P1 = " << t.getP1() << ", P2 = " << t.getP2() << ", P3 = " << t.getP3() << " }";
 }
 
 #endif // TRIANGLE_H

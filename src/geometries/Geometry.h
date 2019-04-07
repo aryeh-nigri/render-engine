@@ -14,7 +14,7 @@ class Geometry
     int _nShininess;
 
   public:
-    Geometry() : _material(Material()), _emission(Color::BLACK), _nShininess(1) { std::cout << "Geometry constructor" << std::endl; }
+    Geometry() : _material(Material()), _emission(Color::BLACK), _nShininess(1) {}
     Geometry(const Geometry &g) : _material(g.getMaterial()), _emission(g.getEmission()), _nShininess(g.getNShininess()) {}
 
     Material getMaterial() const;
