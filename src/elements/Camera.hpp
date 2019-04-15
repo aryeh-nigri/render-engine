@@ -1,7 +1,7 @@
-#if !defined(CAMERA_H)
-#define CAMERA_H
+#if !defined(CAMERA_HPP)
+#define CAMERA_HPP
 
-#include "../primitives/Ray.h"
+#include "../primitives/Ray.hpp"
 
 class Camera
 {
@@ -89,8 +89,9 @@ Ray Camera::constructRayThroughPixel(int nX, int nY, double x, double y, double 
 
     Point3D P = Pc + ((this->_vRight * scalarRight) - (this->_vUp * scalarUp)).getHead();
 
-    Vector direction = Vector(this->_P0, P);
-    direction.normalize();
+    // Vector direction = Vector(this->_P0, P);
+    // direction.normalize();
+    Vector direction = (Vector(this->_P0, P)).normalize();
     return Ray(P, direction);
 }
 
@@ -99,4 +100,4 @@ std::ostream &operator<<(std::ostream &os, const Camera &c)
     return os << "Camera{ P0 = " << c.getP0() << ", vUp = " << c.getVUp() << ", vTo = " << c.getVTo() << ", vRight = " << c.getVRight() << "}";
 }
 
-#endif // CAMERA_H
+#endif // CAMERA_HPP
