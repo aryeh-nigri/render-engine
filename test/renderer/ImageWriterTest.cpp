@@ -1,4 +1,5 @@
 #include "../../src/renderer/ImageWriter.hpp"
+#include "../../src/helper/BMPImage.hpp"
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
 
@@ -8,15 +9,15 @@
 void testWriteToImage()
 {
     std::cout << "testWriteToImage" << std::endl;
+    BMPImage bmp = BMPImage(500, 500);
 
-    ImageWriter instance = ImageWriter("gridImageWriterTest3", 600, 400, 20, 40);
+    ImageWriter instance = ImageWriter("gridImageTest", 500, 500, 25, 25, bmp);
     for (int i = 1; i < instance.getHeight(); i++)
     {
         for (int j = 1; j < instance.getWidth(); j++)
         {
             if (i % instance.getNx() == 0 || j % instance.getNy() == 0)
             {
-                // std::cout << "i = " << i << ", j = " << j << std::endl;
                 instance.writePixel(i, j, Color::WHITE);
             }
         }
@@ -33,7 +34,8 @@ void testWriteToImage2()
     std::cout << "testWriteToImage2" << std::endl;
     /* initialize random seed: */
     srand(time(NULL));
-    ImageWriter instance = ImageWriter("niceImageTest", 500, 500, 1, 1);
+    BMPImage bmp = BMPImage(500, 500);
+    ImageWriter instance = ImageWriter("niceImageTest", 500, 500, 1, 1, bmp);
 
     int height = instance.getHeight();
     int width = instance.getWidth();
@@ -62,7 +64,7 @@ void testWriteToImage2()
 
 int main(int argc, char const *argv[])
 {
-    // testWriteToImage();
+    testWriteToImage();
     testWriteToImage2();
     return 0;
 }

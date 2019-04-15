@@ -1,9 +1,10 @@
 #if !defined(BMPIMAGE_HPP)
 #define BMPIMAGE_HPP
 
-#include <fstream>
-#include <vector>
 #include "Image.hpp"
+#include <fstream>
+// #include <filesystem>
+#include <vector>
 
 const int bytesPerPixel = 4; // red, green, blue, alpha
 const int fileHeaderSize = 14;
@@ -44,7 +45,13 @@ void BMPImage::generateBitmapImage(int pitch, const char *imageFileName) const
     unsigned char *fileHeader = createBitmapFileHeader(pitch, paddingSize); // width * 4, 0
     unsigned char *infoHeader = createBitmapInfoHeader();
 
-    std::ofstream outputFile{imageFileName, std::ios_base::binary};
+    std::string imageName = imageFileName;
+    std::string suffix = ".bmp";
+    std::string fileName = imageName.compare(imageName.size() - suffix.size(), suffix.size(), suffix) == 0 ? imageName : imageName + suffix;
+
+    std::cout << "File Name = " << fileName.c_str() << std::endl;
+    // std::filesystem::create_directory("Samples");
+    std::ofstream outputFile{fileName.c_str(), std::ios_base::binary};
 
     // FILE *imageFile = fopen(imageFileName, "wb");
 
